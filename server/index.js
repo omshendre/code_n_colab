@@ -50,6 +50,10 @@ io.on('connection', (socket) => {
         socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code });
     });
 
+    socket.on(ACTIONS.SYNC_CODE, ({ socketId, code }) => {
+        io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
+    });
+
     // Event handler for client disconnecting
     socket.on('disconnecting', () => {
         const rooms = Array.from(socket.rooms);
