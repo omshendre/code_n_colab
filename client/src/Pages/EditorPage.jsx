@@ -6,7 +6,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import logo from "../assets/Code-n-Colab_in.png";
+import logo from "../../public/Code-n-Colab.png";
 import Client from "../Components/Client";
 import toast from "react-hot-toast";
 import Editor from "../Components/Editor";
