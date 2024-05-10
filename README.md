@@ -18,6 +18,12 @@ Welcome to the collaborative code editor - Code-N-Colab!! This project allows mu
 
 and edit it in .env file under client and copy and paste .env it in the server.
 
+## Demo Video
+
+[![Watch the video](https://drive.google.com/file/d/10BbWIXOO0LpSH7w50TzanSrZpd0Nf9Fg/view?usp=sharing)](https://drive.google.com/file/d/1oHqpytEaSq66Fg4LPyXlpNi3fivg9wVE/view?usp=sharing)
+
+Check out this short video to see Code-N-Colab in action! It demonstrates how multiple users can collaborate in real-time, edit code, and run it within the web-based environment.
+
 
 ## Future scope 📈
 
