@@ -4,7 +4,7 @@ const { Server } = require("socket.io");
 const { ACTIONS } = require('./Actions');
 const path = require('path');
 const env = require('dotenv');
-
+const { currentDirPath } = require('../path.js')
 env.config();
 
 const app = express();
@@ -73,7 +73,7 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`Server listening on port ${port}!`));
 
 
-const __dirname1 = "/Users/Projects/WebD/CollegeProject/untitled folder/Code-n-Colab-main"
+const __dirname1 = currentDirPath
 
 if (process.env.NODE_ENV === 'production') {
     // Serve static files from the 'client/dist' directory
