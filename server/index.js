@@ -72,4 +72,39 @@ io.on('connection', (socket) => {
 const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`Server listening on port ${port}!`));
 
+
+const __dirname1 = "/Users/Projects/WebD/CollegeProject/untitled folder/Code-n-Colab-main"
+
+if (process.env.NODE_ENV === 'production') {
+    // Serve static files from the 'client/dist' directory
+    app.use(express.static(path.join(__dirname1, "client", "dist")));
+
+    // For all other routes, serve the 'index.html' file
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname1, "client", "dist", "index.html"));
+    });
+} else {
+    // For development, just send a message indicating that the API is running
+    app.get("/", (req, res) => {
+        res.send("API is running successfully");
+    });
+}
 module.exports = server; // Export server for Vercel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
