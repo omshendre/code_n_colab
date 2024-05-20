@@ -174,7 +174,6 @@ const executeCode = async (lang, sourceCode, userInput) => {
   async function runcode() {
     try {
       const { run: result } = await executeCode(lang,input,userInput);
-      // setOutput(result.output.split("\n"));
       setOutput(result.output);
     } catch (error) {
       toast.error(`${error}`);
