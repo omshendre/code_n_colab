@@ -1,73 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../App.css";
-import Codemirror from "codemirror";
-//Theme CSS
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/dracula.css";
-import "codemirror/theme/3024-day.css";
-
-import "codemirror/mode/javascript/javascript";
-import "codemirror/addon/edit/closetag";
-import "codemirror/addon/edit/closebrackets";
-
+import { Editor as MonacoEditor } from "@monaco-editor/react";
 import ACTIONS from "../Actions";
 
-
 function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
-  // Using useRef hook to create a reference
-  const editorRef = useRef();
   const [newCode, setNewCode] = useState(" ");
-  const [theme, setTheme] = useState("dracula");
-
-  useEffect(() => {
-    async function init() {
-      editorRef.current = Codemirror.fromTextArea(
-        document.getElementById("realtimeEditor"),
-        {
-          mode: { name: "javascript", json: true },
-          theme: theme,
-          autoCloseTags: true,
-          autoCloseBrackets: true,
-          lineNumbers: true,
-        }
-      );
-    }
-
-    init();
-  }, [theme]);
-
-  useEffect(() => {
-    editorRef.current.on("change", (instance, changes) => {
-      const { origin } = changes;
-
-
-      const code = instance.getValue();
-
-      onCodeChange(code); 
-      if (origin !== "setValue") {
-        socketRef.current.emit(ACTIONS.CODE_CHANGE, {
-          roomId,
-          code,
-        });
-      }
-    });
-  }, [newCode]);
-
-  function handleLang(e) {
-    onLangChange(e.target.value);
-  }
-  function handleTheme(e) {
-    setTheme(e.target.value);
-  }
+  const [theme, setTheme] = useState("vs-dark");
+  const [language, setLanguage] = useState("javascript");
 
   useEffect(() => {
     if (socketRef.current) {
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
         if (code !== null) {
           setNewCode(code);
-
-          editorRef.current.setValue(code);
-
         }
       });
     }
@@ -77,6 +21,15 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
     };
   }, [socketRef.current]);
 
+  function handleLang(e) {
+    const lang = e.target.value;
+    setLanguage(lang);
+    onLangChange(lang);
+  }
+
+  function handleTheme(e) {
+    setTheme(e.target.value);
+  }
 
   return (
     <div>
@@ -97,20 +50,33 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
           <option value="javascript">JavaScript</option>
         </select>
         <select
-          name="language"
-          id="language"
+          name="theme"
+          id="theme"
           className="bg-white p-1 rounded-lg px-4 font-bold  flex justify-center items-center "
           onChange={handleTheme}
         >
-          <option value="dracula" className="flex justify-center items-center">
+          <option value="vs-dark" className="flex justify-center items-center">
             Dark
           </option>
-          <option value="3024-day" className="flex justify-center items-center">
+          <option value="vs-light" className="flex justify-center items-center">
             Light
           </option>
         </select>
       </div>
-      <textarea id="realtimeEditor" className="no-scrollbar"></textarea>
+      <MonacoEditor
+        height="90vh"
+        language={language}
+        theme={theme}
+        value={newCode}
+        onChange={(code) => {
+          setNewCode(code);
+          onCodeChange(code);
+          socketRef.current.emit(ACTIONS.CODE_CHANGE, {
+            roomId,
+            code,
+          });
+        }}
+      />
     </div>
   );
 }
