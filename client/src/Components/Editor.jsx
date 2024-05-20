@@ -50,8 +50,6 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
           code,
         });
       }
-      //Important
-      init();
     });
   }, [newCode]);
 

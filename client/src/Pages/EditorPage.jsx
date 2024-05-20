@@ -36,7 +36,7 @@ function EditorPage() {
   const [clients, setClients] = useState([]);
   const [input, setInput] = useState(" ");
   const [userInput, setUserInput] = useState(null);
-  const [output, setOutPut] = useState(" ");
+  const [output, setOutput] = useState(" ");
   const [lang, setLang] = useState("c++");
 
   // const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
@@ -175,9 +175,7 @@ const executeCode = async (lang, sourceCode, userInput) => {
     try {
       const { run: result } = await executeCode(lang,input,userInput);
       // setOutput(result.output.split("\n"));
-      setOutPut(result.output);
-      console.log(input);
-      console.log(result.output);
+      setOutput(result.output);
     } catch (error) {
       toast.error(`${error}`);
       console.error(error);
@@ -242,7 +240,6 @@ const executeCode = async (lang, sourceCode, userInput) => {
           }}
           onLangChange={(lang) => {
             setLang(lang);
-            console.log(lang);
           }}
         />
       </div>
