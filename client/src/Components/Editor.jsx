@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../App.css";
 import Codemirror from "codemirror";
 //Theme CSS
@@ -11,7 +11,7 @@ import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets";
 
 import ACTIONS from "../Actions";
-import { stringify } from "uuid";
+
 
 function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
   // Using useRef hook to create a reference
