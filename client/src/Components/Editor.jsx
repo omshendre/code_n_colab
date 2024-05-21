@@ -47,7 +47,7 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
           <option value="c">C</option>
           <option value="python">Python</option>
           <option value="java">Java</option>
-          <option value="sqlite3">SQL</option>
+          <option value="typescript">TypeScript</option>
           <option value="javascript">JavaScript</option>
         </select>
         <select

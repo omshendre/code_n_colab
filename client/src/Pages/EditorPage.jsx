@@ -97,7 +97,7 @@ function EditorPage() {
     "python": "3.10.0",
     "java": "15.0.2",
     "javascript": "1.32.3",
-    "sqlite3": "3.36.0",
+    "typescript": "1.32.3",
   };
 
   const executeCode = async (lang, sourceCode, userInput) => {
