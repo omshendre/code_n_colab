@@ -24,7 +24,7 @@ function EditorPage() {
   const [input, setInput] = useState(" ");
   const [userInput, setUserInput] = useState(null);
   const [output, setOutput] = useState(" ");
-  const [lang, setLang] = useState("c++");
+  const [lang, setLang] = useState("cpp");
 
   const reactNavigator = useNavigate();
 
@@ -93,7 +93,7 @@ function EditorPage() {
   });
 
   const LANGUAGE_VERSIONS = {
-    "c++": "10.2.0",
+    "cpp": "10.2.0",
     "c": "10.2.0",
     "python": "3.10.0",
     "java": "15.0.2",

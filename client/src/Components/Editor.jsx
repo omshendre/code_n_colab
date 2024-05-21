@@ -5,7 +5,7 @@ import ACTIONS from "../Actions";
 function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
   const [newCode, setNewCode] = useState(" ");
   const [theme, setTheme] = useState("vs-dark");
-  const [language, setLanguage] = useState("javascript");
+  const [language, setLanguage] = useState("cpp");
 
   useEffect(() => {
     if (socketRef.current) {
@@ -40,7 +40,7 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
           className="bg-white p-1 rounded-lg px-4 font-bold  flex justify-center items-center "
           onChange={handleLang}
         >
-          <option value="c++" className="flex justify-center items-center">
+          <option value="cpp" className="flex justify-center items-center">
             C++
           </option>
           <option value="c">C</option>
