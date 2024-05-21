@@ -21,7 +21,7 @@ function EditorPage() {
   const location = useLocation();
   const { roomId } = useParams();
   const [clients, setClients] = useState([]);
-  const [input, setInput] = useState(" ");
+  const [input, setInput] = useState("");
   const [userInput, setUserInput] = useState(null);
   const [output, setOutput] = useState(" ");
   const [lang, setLang] = useState("cpp");
@@ -125,6 +125,7 @@ function EditorPage() {
         setError(false)
         setOutput(result.stdout);
       }
+      console.log(input)
       console.log(result);
     } catch (error) {
       toast.error(`${error}`);
@@ -188,6 +189,7 @@ function EditorPage() {
           onLangChange={(lang) => {
             setLang(lang);
           }}
+          setInput = {setInput}
         />
       </div>
       <div className="w-[32%]">
