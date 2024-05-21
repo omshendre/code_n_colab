@@ -25,7 +25,7 @@ function EditorPage() {
   const [userInput, setUserInput] = useState(null);
   const [output, setOutput] = useState(" ");
   const [lang, setLang] = useState("cpp");
-
+  const [error,setError] = useState(false);
   const reactNavigator = useNavigate();
 
   useEffect(() => {
@@ -118,11 +118,17 @@ function EditorPage() {
   async function runcode() {
     try {
       const { run: result } = await executeCode(lang, input, userInput);
-      setOutput(result.output);
-
+      if (result.stderr) {
+        setOutput(result.stderr);
+        setError(true)
+      } else {
+        setError(false)
+        setOutput(result.stdout);
+      }
+      console.log(result);
     } catch (error) {
       toast.error(`${error}`);
-      console.error(error);
+      console.error(error.message);
     }
   }
 
@@ -186,7 +192,7 @@ function EditorPage() {
       </div>
       <div className="w-[32%]">
         <Stats setInput={setUserInput} />
-        <Output output={output} />
+        <Output output={output} error = {error} />
       </div>
     </div>
   );
