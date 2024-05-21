@@ -27,7 +27,6 @@ function EditorPage() {
   const [lang, setLang] = useState("cpp");
   const [error,setError] = useState(false);
   const reactNavigator = useNavigate();
-
   useEffect(() => {
     const init = async () => {
       socketRef.current = await initSocket();
@@ -136,7 +135,10 @@ function EditorPage() {
   if (!location.state) {
     return <Navigate to="/" />;
   }
-
+  const handleCodeChange = (code) => {
+    codeRef.current = code;
+    setInput(code);
+  };
   return (
     <div id="mainWrap" className="flex h-[100%] no-scrollbar">
       <div
@@ -182,14 +184,11 @@ function EditorPage() {
         <Editor
           socketRef={socketRef}
           roomId={roomId}
-          onCodeChange={(code) => {
-            codeRef.current = code;
-            setInput(code);
-          }}
+          onCodeChange={handleCodeChange}
           onLangChange={(lang) => {
             setLang(lang);
           }}
-          setInput = {setInput}
+
         />
       </div>
       <div className="w-[32%]">

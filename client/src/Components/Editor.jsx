@@ -12,12 +12,14 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
         if (code !== null) {
           setNewCode(code);
+          // Important for code sync
+          onCodeChange(code); // Call the onCodeChange callback
         }
       });
     }
 
     return () => {
-      socketRef.current.off(ACTIONS.CODE_CHANGE);
+      socketRef.current.off(ACTIONS.CODE_CHANGE)
     };
   }, [socketRef.current]);
 
@@ -30,7 +32,6 @@ function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
   function handleTheme(e) {
     setTheme(e.target.value);
   }
-
   return (
     <div>
       <div className="p-6 flex pt-9 gap-4 ">
