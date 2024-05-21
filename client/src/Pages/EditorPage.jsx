@@ -119,7 +119,7 @@ function EditorPage() {
     try {
       const { run: result } = await executeCode(lang, input, userInput);
       setOutput(result.output);
-      console.log(result);
+
     } catch (error) {
       toast.error(`${error}`);
       console.error(error);
