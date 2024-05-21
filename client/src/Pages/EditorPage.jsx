@@ -124,8 +124,6 @@ function EditorPage() {
         setError(false)
         setOutput(result.stdout);
       }
-      console.log(input)
-      console.log(result);
     } catch (error) {
       toast.error(`${error}`);
       console.error(error.message);
