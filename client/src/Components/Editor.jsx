@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Editor as MonacoEditor } from "@monaco-editor/react";
 import ACTIONS from "../Actions";
 
 function Editor({ socketRef, roomId, onCodeChange, onLangChange }) {
-  const [newCode, setNewCode] = useState(" ");
+  const [newCode, setNewCode] = useState("");
   const [theme, setTheme] = useState("vs-dark");
   const [language, setLanguage] = useState("cpp");
 
