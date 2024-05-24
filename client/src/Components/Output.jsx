@@ -7,7 +7,7 @@ function Output({output,error}) {
         OUTPUT
         </div>
         <div
-        className={`h-[50vh] w-[80%] p-2 rounded-lg border font-sans ${error ? 'border-red-500 text-red-500' :'text-orange-400'}`}
+        className={`h-[50vh] w-[80%] p-2 rounded-lg border font-sans overflow-auto ${error ? 'border-red-500 text-red-500' : 'text-orange-400'}`}
         disabled={true}
         >
   {output.split('\n').map((line, index) => (
